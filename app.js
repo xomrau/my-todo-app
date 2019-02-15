@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const todosRouter = require('./routes/todos'); //todos router
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/todos', todosRouter); //set to be used by our app when incoming req has ./todos
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
