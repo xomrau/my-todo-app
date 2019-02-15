@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const exphbs = require('express-handlebars'); //handlebars view engine for Express
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -11,8 +12,10 @@ const todosRouter = require('./routes/todos'); //todos router
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.engine('hbs', exphbs({extname: '.hbs', defaultLayout: 'layout'}));
+app.set('view engine', 'hbs');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
