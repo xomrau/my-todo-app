@@ -2,6 +2,8 @@
  * GENERAL SCRIPT
  */
 
+const $ = require('jquery');
+/*
 document.addEventListener('DOMContentLoaded', function(e){ //func runs when DOM is ready indicates by the event type
     const checkboxes = document.getElementsByTagName('input'); //select all checkboxes using 'input' tag
     for (let i = 0; i < checkboxes.length; i++){// iterates over the checkboxes
@@ -18,3 +20,12 @@ function clickHandler(){
     }
 
 }
+*/
+
+
+//jquery .on API attach a callback handler to each element that matches the selector
+$(function() { // $(function(){...}) - replacement DOMContentLoaded events w jQuery's supports of document.ready()
+    $('input').on('click', function() { //way to use selectors to get a ref to all the input elements on our page
+        $(this).parent().toggleClass('checked');
+    });
+});
