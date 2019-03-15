@@ -8,7 +8,7 @@ let Promise = require('bluebird');
 Promise.promisifyAll(mongoose);
 
 let TodoSchema = new Schema({
-    text: {type: 'String', required: true},
+    text: {type: 'Object', required: true},
     done: {type: 'Boolean'}
 });
 

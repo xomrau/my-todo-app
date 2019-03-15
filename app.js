@@ -23,9 +23,6 @@ app.set('view engine', 'hbs');
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'pug');
 
-app.use('/todos', todos);
-app.use('/api/todos', todosAPI);
-
 app.use(
   sassMidware({
     src: __dirname + '/sass', //compile any sass files in this dir
@@ -60,9 +57,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//define all configuration BEFORE define routers.
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/todos', todosRouter); //set to be used by our app when incoming req has ./todos
+app.use('/todos', todos);
+app.use('/api/todos', todosAPI);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
