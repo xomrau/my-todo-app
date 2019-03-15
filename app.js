@@ -22,6 +22,10 @@ app.engine('hbs', exphbs({extname: '.hbs', defaultLayout: 'layout'}));
 app.set('view engine', 'hbs');
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'pug');
+
+app.use('/todos', todos);
+app.use('/api/todos', todosAPI);
+
 app.use(
   sassMidware({
     src: __dirname + '/sass', //compile any sass files in this dir

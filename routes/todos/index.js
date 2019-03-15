@@ -7,8 +7,8 @@
 
 const express = require('express');
 const router = express.Router();
-const todos = require('../models/todos');
-const Todo = require('../models/todos');
+
+const Todo = require('../../models/todos');
 
 router.get('/', function(req, res, next){
   Todo.findAsync()
