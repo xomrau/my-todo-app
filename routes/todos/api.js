@@ -27,5 +27,14 @@ router.route('/')
         .error(console.error);
     });
 
+router.route('/:id')
+    .get(function(req, res, next){
+        Todo.findOneAsync({_id: req.params.id}, {text: 1, done: 1})
+        .then(function(todos){
+            res.json(todos)
+        })
+        .catch(next)
+        .error(console.error);
+    });
 
 module.exports = router;
