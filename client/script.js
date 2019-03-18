@@ -46,6 +46,7 @@ var addTodo = function() {
         },
         dataType: 'json', //datatype expecting back from server
         success: function(data) { //if request is success --> invoke the callback
+            data.todo = text;
             var todo = data.todo;
             var newLiHtml = '<li><input type="checkbox"><span> ' + todo + '</span></li>';
             $('form + ul').append(newLiHtml);
