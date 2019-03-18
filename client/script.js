@@ -22,6 +22,37 @@ function clickHandler(){
 }
 */
 
+//doesnt work as intended yet. When a todo entry is added, in the list, it shows 'undefined' despite register the right value in the db.
+$(function() {
+    $(':button').on('click', addTodo);
+    $(':text').on('keypress', function(e) {
+        var key = e.keyCode;
+        if(key == 13 || key == 169) {
+            addTodo();
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    });
+});
+
+var addTodo = function() {
+    var text = $('#add-todo-text').val();
+    $.ajax({
+        url: '/api/todos', //url to which the request is sent
+        type: 'POST', //def: GET. an alias for method
+        data: {
+            text: text
+        },
+        dataType: 'json', //datatype expecting back from server
+        success: function(data) { //if request is success --> invoke the callback
+            var todo = data.todo;
+            var newLiHtml = '<li><input type="checkbox"><span> ' + todo + '</span></li>';
+            $('form + ul').append(newLiHtml);
+            $('#add-todo-text').val('');
+        }
+    });
+};
 
 //jquery .on API attach a callback handler to each element that matches the selector
 $(function() { // $(function(){...}) - replacement DOMContentLoaded events w jQuery's supports of document.ready()
